@@ -1,15 +1,16 @@
 {
   "manifest_version": 3,
-  "name": "Hello Extensions",
-  "description": "COEN 296A A3",
+  "name": "ReFOCUS",
+  "description": "(COEN 296A A3) This is an extension that focuses on rerouting to help users against ACDPs.",
   "version": "1.0",
+  "author": "Team Focus5",
   "action": {
-    "default_popup": "helloworld.html",
-    "default_icon": "helloworld.png"
+    "default_popup": "index.html",
+    "default_icon": "logo.png"
   },
   "content_scripts": [
     {
-      "js": ["helloworld.js"],
+      "js": ["script.js"],
       "matches": ["https://www.youtube.com/*"]
     }
   ],
