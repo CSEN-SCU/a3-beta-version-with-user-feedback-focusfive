@@ -1,27 +1,45 @@
 html {
   font-family: arimo, sans-serif;
-  padding: 20px;
+  padding: 10px;
   box-shadow: 2px 2px 8px #999999;
-  border-radius: 20px;
-  background: rgba(1,1,1,0);
+  background: #F6F6F6;
   width: 500px;
 }
 
-body {
-  background: #F6F6F6;
-}
-
-img {
+#logo {
   width: 30px;
   border: 7px solid #ffffff;
   border-radius: 50%;
   background: white;
+  vertical-align: middle;
 }
 
 h2 {
-  display: inline-block;
   font-size: 20px;
+  position: relative;
+  display: inline;
 }
+
+h3 {
+  margin-bottom: 5px;
+}
+
+.mainInput {
+  width: 300px;
+}
+
+.timeInput {
+  width: 50px;
+}
+
+.lists {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: white;
+  padding: 1px 20px 15px 20px;
+  border-radius: 10px;
+}
+
 
 
 /* https://codepen.io/stickybiscuits/pen/qBrMKVO */
