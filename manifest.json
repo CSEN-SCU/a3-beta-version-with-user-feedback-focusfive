@@ -5,12 +5,13 @@
   "version": "1.0",
   "author": "Team Focus5",
   "action": {
-    "default_popup": "index.html",
-    "default_icon": "logo.png"
+    "default_popup": "main.html",
+    "default_icon": "logo.png",
+    "default_title": "ReFOCUS"
   },
   "content_scripts": [
     {
-      "js": ["script.js"],
+      "js": ["togglescript.js", "loadingscript.js"],
       "matches": ["https://www.youtube.com/*"]
     }
   ],
