@@ -1,0 +1,59 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  font-family: arial, sans-serif;
+  font-size: 20px;
+  color: black;
+  background: grey;
+}
+
+.website {
+  font-weight: bold;
+  display: inline;
+  color: red;
+}
+
+.task {
+  font-weight: bold;
+  display: inline;
+  color: blue;
+}
+
+
+/*Button from: https://codepen.io/davidicus/pen/emgQKJ */
+.buttons {
+  cursor: pointer;
+  display: inline; 
+}
+
+.btn {
+  cursor: pointer;
+  display: inline;
+  font-size: 15px;
+  position: relative;
+  text-decoration: none;
+  padding: 12px;
+  margin: 50px;
+  color: white;
+}
+
+.btn-5 {
+  border: 0 solid;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
+  outline: 1px solid;
+  outline-color: rgba(255, 255, 255, .5);
+  outline-offset: 0px;
+  text-shadow: none;
+  transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+} 
+
+.btn-5:hover {
+  border: 1px solid;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
+  text-shadow: 1px 1px 2px #427388; 
+}

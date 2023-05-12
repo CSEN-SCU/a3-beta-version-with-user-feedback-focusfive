@@ -6,6 +6,10 @@ Delay before loading page: (maybe 2 seconds?)
 
 https://stackoverflow.com/questions/5797522/introduce-load-time-delay-in-chrome-extension
 
+Popup button reference:
+
+https://codepen.io/davidicus/pen/emgQKJ
+
 Switch button references:
 
 https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch
