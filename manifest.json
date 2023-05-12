@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "ReFOCUS",
+  "name": "ReFocus",
   "description": "(COEN 296A A3) This is an extension that focuses on rerouting to help users against ACDPs.",
   "version": "1.0",
   "author": "Team Focus5",
