@@ -1,16 +1,18 @@
-Rerouting API reference:
+Note:
+
+## Rerouting API reference:
 
 https://developer.chrome.com/docs/extensions/reference/declarativeNetRequest/
 
-Delay before loading page: (maybe 2 seconds?)
+## Delay before loading page: (maybe 2 seconds?)
 
 https://stackoverflow.com/questions/5797522/introduce-load-time-delay-in-chrome-extension
 
-Popup button reference:
+## Popup button reference:
 
 https://codepen.io/davidicus/pen/emgQKJ
 
-Switch button references:
+## Switch button references:
 
 https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch
 https://codepen.io/stickybiscuits/pen/qBrMKVO?editors=1010
