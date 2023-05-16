@@ -4,9 +4,18 @@
   "description": "(COEN 296A A3) This is an extension that focuses on rerouting to help users against ACDPs.",
   "version": "1.0",
   "author": "Team Focus5",
+  "icons": {
+    "16": "/logo-16.png",
+    "48": "/logo-48.png",
+    "128": "/logo-128.png"
+  },
   "action": {
     "default_popup": "main.html",
-    "default_icon": "logo.png",
+    "default_icon": {
+      "16": "/logo-16.png",
+      "48": "/logo-48.png",
+      "128": "/logo-128.png"
+    },
     "default_title": "ReFOCUS"
   },
   "content_scripts": [
@@ -18,10 +27,5 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": [
-    "storage", 
-    "activeTab", 
-    "scripting",
-    "declarativeNetRequest"
-  ]
+  "permissions": ["storage", "activeTab", "scripting", "declarativeNetRequest"]
 }
