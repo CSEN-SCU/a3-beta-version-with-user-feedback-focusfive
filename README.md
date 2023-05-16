@@ -1,18 +1,18 @@
 Note:
 
-## Rerouting API reference:
+Rerouting API reference:
 
 https://developer.chrome.com/docs/extensions/reference/declarativeNetRequest/
 
-## Delay before loading page: (maybe 2 seconds?)
+Delay before loading page: (maybe 2 seconds?)
 
 https://stackoverflow.com/questions/5797522/introduce-load-time-delay-in-chrome-extension
 
-## Popup button reference:
+Popup button reference:
 
 https://codepen.io/davidicus/pen/emgQKJ
 
-## Switch button references:
+Switch button references:
 
 https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch
 https://codepen.io/stickybiscuits/pen/qBrMKVO?editors=1010
@@ -34,6 +34,6 @@ To load an unpacked extension in developer mode:
 2. Enable Developer Mode by clicking the toggle switch next to Developer mode.
 3. Click the Load unpacked button and select the extension directory.
 
-![alt text](https://user-images.githubusercontent.com/36625317/233700422-adeff59a-a61c-4835-94ee-aba861cd6d9f.png)
+![alt text](https://user-images.githubusercontent.com/49005820/238784339-cf294306-8938-47e5-8971-a82c891fe4c7.png)
 
 Ta-da! The extension has been successfully installed. Because no extension icons were included in the manifest, a generic icon will be created for the extension.
