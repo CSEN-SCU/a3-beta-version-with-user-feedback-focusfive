@@ -8,9 +8,9 @@
     "default_popup": "/main/main.html",
     "default_title": "ReFocus",
     "default_icon": {
-      "16": "/logos/logo.png",
-      "48": "/logos/logo.png",
-      "128": "/logos/logo.png"
+      "16": "/logos/logo-16.png",
+      "48": "/logos/logo-48.png",
+      "128": "/logos/logo-128.png"
     }
   },
   "content_scripts": [
