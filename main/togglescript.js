@@ -1,6 +1,10 @@
-document.querySelector('.toggle').addEventListener('click', function() {
-  toggleFunction();
-});
+const el = document.querySelector('.toggle');
+
+if (el) {
+  document.querySelector('.toggle').addEventListener('click', function() {
+    toggleFunction();
+  });
+}
 
 function toggleFunction() {
   var x = document.getElementById("toggle");
