@@ -18,12 +18,10 @@
       "run_at": "document_start",
       "js": [
         "/main/togglescript.js",
-        "/loading/loadingscript.js",
         "/rerouting/reroutescript.js"
       ],
       "matches": [
-        "http://*.wikipedia.org/wiki/*",
-        "https://*.wikipedia.org/wiki/*"
+        "http://*/*"
       ]
     }
   ],
@@ -34,5 +32,13 @@
     "storage",
     "activeTab",
     "scripting",
-    "declarativeNetRequest"]
+    "declarativeNetRequest",
+    "tabs",
+    "webNavigation",
+    "unlimitedStorage"
+  ],
+  "host_permissions": [
+    "http://*/*", 
+    "https://*/*"
+  ]
 }
