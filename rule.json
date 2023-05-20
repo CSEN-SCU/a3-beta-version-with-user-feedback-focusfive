@@ -1,0 +1,15 @@
+[{
+  "id": 1,
+  "condition": {
+    "urlFilter": "|https://www.amazon.com/",
+    "resourceTypes": ["main_frame"]
+  },
+  "action": {
+    "type": "redirect",
+    "redirect": {
+      "transform": {
+        "host": "www.amazon.de"
+      }
+    }
+  }
+}]

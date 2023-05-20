@@ -1,4 +1,6 @@
-Note:
+Notes:
+
+https://stackoverflow.com/questions/75791482/chrome-extension-redirecting-with-regexsubstitution-but-keeping-path-if-existi
 
 Rerouting API reference:
 
