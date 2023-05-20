@@ -12,14 +12,28 @@
 
   <body>
     <div class="heading">
-      <img id="logo" src="https://cdn.glitch.global/9be70c1a-ec29-4a35-9d80-afe9e7550799/thumbnails%2Flogo.png" alt="Italian Trulli">  
+      <img id="logo" src="/logos/logo.png" alt="Logo image">  
       <h2>Today</h2>
     </div>
 
     <div class="lists">
       <div>
         <h3>To Do List:</h3>
-        <input class="mainInput" type="text" placeholder="Write Essay">
+        
+        <fieldset class="form-inline">
+          <input class="form-control" id="addItemInput" placeholder="add new item">
+          <button class="addItemBtn" title="Add to the top of the list">Add item</button>
+          
+          <section>
+            <ol id="toDoList">
+              <li><span contenteditable>reddit.com</span><a></a></li>
+              <li><span contenteditable>twitter.com</span><a></a></li>
+              <li><span contenteditable>facebook.com</span><a></a></li>
+            </ol>
+          </section>
+          
+        </fieldset>
+        
       </div>
 
       <div>
@@ -42,7 +56,9 @@
   </label> 
     
   </body>
-  
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/main/listscript.js"></script>
 <script src="/main/togglescript.js"></script>
 
 </html>
