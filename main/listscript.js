@@ -1,22 +1,22 @@
-const element1 = document.querySelector('.addItemBtn');
-const element2 = document.querySelector('.removeItemBtn');
+const element1 = document.querySelector('.addTaskBtn');
+const element2 = document.querySelector('.removeTaskBtn');
 
 if (element1) {
-  document.querySelector('.addItemBtn').addEventListener('click', function() {
-    addItem();
+  document.querySelector('.addTaskBtn').addEventListener('click', function() {
+    addTaskItem();
   });
 }
 
 if (element2) {
-  document.querySelector('.removeItemBtn').addEventListener('click', function() {
-    removeItem();
+  document.querySelector('.removeTaskBtn').addEventListener('click', function() {
+    removeTaskItem();
   }); 
 }
 
-function addItem () {  
+function addTaskItem () {  
   // Create new list item and append to the top
   var item = document.createElement("li");
-  var x = document.getElementById("addItemInput").value;
+  var x = document.getElementById("addTaskInput").value;
   
   if (!x) {
     return;
@@ -24,17 +24,17 @@ function addItem () {
   else {
     item.innerHTML = x;
  
-    document.getElementById("toDoList").insertAdjacentElement("afterbegin", item);
+    document.getElementById("taskList").insertAdjacentElement("afterbegin", item);
   
     // Alternate version for appending at the bottom (instead of top):
     // document.getElementById("toDoList").appendChild(item); 
   }
 }
 
-function removeItem() {
+function removeTaskItem() {
   // Get the list and all of its items
-  var list = document.getElementById("toDoList");
-  var allItems = document.querySelectorAll("#toDoList li");
+  var list = document.getElementById("taskList");
+  var allItems = document.querySelectorAll("#taskList li");
   
   // Remove item from top of list
   list.removeChild(allItems[0]);

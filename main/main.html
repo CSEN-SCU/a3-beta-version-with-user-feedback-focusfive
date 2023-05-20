@@ -18,18 +18,17 @@
 
     <div class="lists">
       <div>
-        <h3>To Do List:</h3>
+        <h3>Productive Sites:</h3>
         
         <fieldset class="form-inline">
-          <input class="form-control" id="addItemInput" placeholder="add new item">
-          <button class="addItemBtn" title="Add to top of the list">Add item</button>
-          <button class="removeItemBtn" title="Remove from list">Remove item</button>
+          <input class="form-control" id="addTaskInput" placeholder="Add new task">
+          <button class="addTaskBtn" title="Add to top of the list">Add task</button>
+          <button class="removeTaskBtn" title="Remove from list">Remove task</button>
           
           <section>
-            <ol id="toDoList">
-              <li><span contenteditable>reddit.com</span><a></a></li>
-              <li><span contenteditable>twitter.com</span><a></a></li>
-              <li><span contenteditable>facebook.com</span><a></a></li>
+            <ol id="taskList">
+              <li><span contenteditable>camino.instructure.com</span><a></a></li>
+              <li><span contenteditable>docs.google.com</span><a></a></li>
             </ol>
           </section>
           
@@ -39,7 +38,22 @@
 
       <div>
         <h3>Unproductive sites:</h3>
-        <input class="mainInput" type="text" placeholder="reddit.com">
+        
+        <fieldset class="form-inline">
+          <input class="form-control" id="addSiteInput" placeholder="Add a new site">
+          <button class="addSiteBtn" title="Add to top of the list">Add site</button>
+          <button class="removeSiteBtn" title="Remove from list">Remove site</button>
+          
+          <section>
+            <ol id="sitesList">
+              <li><span contenteditable>reddit.com</span><a></a></li>
+              <li><span contenteditable>twitter.com</span><a></a></li>
+              <li><span contenteditable>facebook.com</span><a></a></li>
+            </ol>
+          </section>
+          
+        </fieldset>
+        
       </div>
 
       <div>
