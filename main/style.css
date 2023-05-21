@@ -120,12 +120,20 @@ ol {
 }
 
 li {
-  max-width:170px; margin-bottom:8px;
-  a { margin-left:5px; cursor:pointer;
-    &:hover{ text-decoration:none; }
-    &::before{
-      color:red;
-      content:'\00D7'; /* Supposed to be little X's next to each List item... */
-    }
-  }
+  max-width: 170px;
+  margin-bottom: 8px;
+}
+
+li a {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+li a:hover {
+  text-decoration: none;
+}
+
+li a::before {
+  color: red;
+  content: '\00D7';
 }
