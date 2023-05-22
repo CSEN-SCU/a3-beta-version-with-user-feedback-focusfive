@@ -29,13 +29,6 @@
     "service_worker": "/main/background.js",
     "type": "module"
   },
-  "declarative_net_request": {
-    "rule_resources": [{
-      "id": "ruleset_1",
-      "enabled": true,
-      "path": "rule.json"
-    }]
-  },
   "permissions": [
     "storage",
     "activeTab",
