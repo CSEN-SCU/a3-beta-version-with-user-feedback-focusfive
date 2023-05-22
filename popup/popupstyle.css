@@ -5,21 +5,22 @@ body {
   text-align: center;
   height: 100vh;
   font-family: arial, sans-serif;
-  font-size: 20px;
-  color: black;
+  font-size: 25px;
+  color: white;
   background: grey;
+  font-weight: bold;
 }
 
 .website {
   font-weight: bold;
   display: inline;
-  color: red;
+  color: white;
 }
 
 .task {
   font-weight: bold;
   display: inline;
-  color: blue;
+  color: white;
 }
 
 
