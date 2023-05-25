@@ -1,5 +1,9 @@
 Notes:
 
+https://github.com/skoczen/mindful-browsing/blob/master/extension/js/ractive.min.js
+
+https://github.com/skoczen/mindful-browsing/blob/master/extension/js/popup.js
+
 https://code-boxx.com/add-remove-list-items-javascript/
 
 https://stackoverflow.com/questions/75791482/chrome-extension-redirecting-with-regexsubstitution-but-keeping-path-if-existi
