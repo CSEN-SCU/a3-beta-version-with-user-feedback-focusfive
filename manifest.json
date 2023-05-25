@@ -18,7 +18,8 @@
       "run_at": "document_start",
       "js": [
         "/main/togglescript.js",
-        "/rerouting/reroutescript.js"
+        "/rerouting/reroutescript.js",
+        "/ractive.js"
       ],
       "matches": [
         "http://*/*"
