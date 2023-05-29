@@ -9,7 +9,7 @@ if (element1) {
 
 if (element2) {
   document.querySelector('.removeTaskBtn').addEventListener('click', function() {
-    removeTaskItem();
+    removeTaskItemTop();
   });
 }
 
@@ -24,7 +24,7 @@ if (element3) {
 
 if (element4) {
   document.querySelector('.removeSiteBtn').addEventListener('click', function() {
-    removeSiteItem();
+    removeSitesItemTop();
   });
 }
 
@@ -57,17 +57,39 @@ function addTaskItem () {
   };
 }
 
-function removeTaskItem() {
+function removeTaskItem(event) {
+  const listItem = event.target.parentNode;
+  const list = listItem.parentNode;
+  const siteToRemove = listItem.querySelector('span').textContent;
+
+  // Get the current productive sites list from storage
+  getProductiveSites(function (taskList) {
+    // Find the index of the site to remove
+    const index = taskList.indexOf(siteToRemove);
+
+    if (index !== -1) {
+      // Remove the site from the list
+      taskList.splice(index, 1);
+
+      // Save the updated list to storage
+      saveProductiveSites(taskList);
+
+      // Remove the item from the displayed list
+      list.removeChild(listItem);
+    }
+  });
+}
+
+function removeTaskItemTop() {
   const list = document.getElementById('taskList');
   const allItems = document.querySelectorAll('#taskList li');
 
-
   if (allItems.length > 0) {
-    // Get the site to remove
-    const siteToRemove = allItems[0].querySelector('span').textContent;
+    const listItem = allItems[0];
+    const siteToRemove = listItem.querySelector('span').textContent;
 
-    // Get the current unproductive sites list from storage
-    getProductiveSites(function(taskList) {
+    // Get the current productive sites list from storage
+    getProductiveSites(function (taskList) {
       // Find the index of the site to remove
       const index = taskList.indexOf(siteToRemove);
 
@@ -79,7 +101,7 @@ function removeTaskItem() {
         saveProductiveSites(taskList);
 
         // Remove the item from the displayed list
-        list.removeChild(allItems[0]);
+        list.removeChild(listItem);
       }
     });
   }
@@ -114,16 +136,41 @@ function addSiteItem () {
   };
 }
 
-function removeSiteItem() {
+function removeSitesItem(event) {
+  const listItem = event.target.parentNode;
+  const list = listItem.parentNode;
+  const siteToRemove = listItem.querySelector('span').textContent;
+
+  // Get the current productive sites list from storage
+  getUnproductiveSites(function (sitesList) {
+    // Find the index of the site to remove
+    const index = sitesList.indexOf(siteToRemove);
+
+    if (index !== -1) {
+      // Remove the site from the list
+      sitesList.splice(index, 1);
+
+      // Save the updated list to storage
+      saveUnproductiveSites(sitesList);
+
+      // Remove the item from the displayed list
+      list.removeChild(listItem);
+    }
+  });
+}
+
+
+
+function removeSitesItemTop() {
   const list = document.getElementById('sitesList');
   const allItems = document.querySelectorAll('#sitesList li');
 
   if (allItems.length > 0) {
-    // Get the site to remove
-    const siteToRemove = allItems[0].querySelector('span').textContent;
+    const listItem = allItems[0];
+    const siteToRemove = listItem.querySelector('span').textContent;
 
-    // Get the current unproductive sites list from storage
-    getUnproductiveSites(function(sitesList) {
+    // Get the current productive sites list from storage
+    getUnproductiveSites(function (sitesList) {
       // Find the index of the site to remove
       const index = sitesList.indexOf(siteToRemove);
 
@@ -135,11 +182,12 @@ function removeSiteItem() {
         saveUnproductiveSites(sitesList);
 
         // Remove the item from the displayed list
-        list.removeChild(allItems[0]);
+        list.removeChild(listItem);
       }
     });
   }
 }
+
 
 
 // ================ Supportive functions for the productive sites ================
@@ -159,7 +207,7 @@ function getProductiveSites(callback) {
   });
 }
 
-// Function to update the displayed list of unproductive sites
+// Function to update the displayed list of productive sites
 function updateTaskList(taskList) {
   const list = document.getElementById('taskList');
 
@@ -175,7 +223,9 @@ function updateTaskList(taskList) {
 
     const anchor = document.createElement('a');
     anchor.textContent = 'Remove';
-    anchor.addEventListener('click', removeTaskItem);
+    anchor.addEventListener('click', function(event){
+      removeTaskItem(event);
+    });
 
     listItem.appendChild(span);
     listItem.appendChild(anchor);
@@ -228,7 +278,9 @@ function updateSitesList(sitesList) {
 
     const anchor = document.createElement('a');
     anchor.textContent = 'Remove';
-    anchor.addEventListener('click', removeSiteItem);
+    anchor.addEventListener('click', function(event){
+      removeSitesItem(event);
+    });
 
     listItem.appendChild(span);
     listItem.appendChild(anchor);
