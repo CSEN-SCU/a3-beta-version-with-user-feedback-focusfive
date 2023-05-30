@@ -36,9 +36,7 @@ function handleBeforeNavigate(details) {
                         // Perform actions with the top productive site
                         console.log('redirect Url: ', redirectUrl);
                     } else {
-                        console.log('No productive sites available. If you want to be reroute' +
-                            '' +
-                            'd for unproductive sites, ' +
+                        console.log('No productive sites available. If you want to be rerouted for unproductive sites, ' +
                             'please add your target website in the productive site list. ');
                         // Handle the case when no productive sites are available
                     }
@@ -51,14 +49,28 @@ function handleBeforeNavigate(details) {
             }
         });
     }
-
 }
+
+
+// Establish a dictionary, if url in this dictionary, no need to check?
 
 // Register the event listener with proper unregistering
 chrome.webNavigation.onBeforeNavigate.addListener(handleBeforeNavigate);
 
-// Unregister the event listener if it is already registered
-// chrome.webNavigation.onBeforeNavigate.removeListener(handleBeforeNavigate);
+
+// Function to handle messages from the popup.js script
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+    if (message.action === 'removeListener') {
+        // Remove the listener
+        chrome.webNavigation.onBeforeNavigate.removeListener(handleBeforeNavigate);
+    } else if (message.action === 'addListener') {
+        // Add the listener again
+        chrome.webNavigation.onBeforeNavigate.addListener(handleBeforeNavigate);
+    }
+});
+
+
+
 
 // Function to check if the URL belongs to an unproductive site
 function isUnproductiveSite(url, callback) {
