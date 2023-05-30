@@ -17,5 +17,9 @@ chrome.webNavigation.onBeforeNavigate.addListener(function(details) {
         chrome.tabs.create({ url: '/popup/popup.html' });
         chrome.tabs.remove(details.tabId); // Close the original tab
     }
+    if (details.url.includes('www.redfin.com') && mode ===  'focus'){
+        console.log("this is a test log in background.js");
+        const redirectUrl = 'https://www.twitter.com';
+        chrome.tabs.update(details.tabId, { url: redirectUrl });
+    }
 });
-
