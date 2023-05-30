@@ -16,11 +16,13 @@ let redirectUrl;
 function handleBeforeNavigate(details) {
     console.log("This is the handle before navigate");
     if (mode === 'mindful') {
-        if (isUnproductiveSite(details.url)) {
-            // Open a webpage showing a reminder
-            chrome.tabs.create({ url: '/popup/popup.html' });
-            chrome.tabs.remove(details.tabId); // Close the original tab
-        }
+        isUnproductiveSite(details.url, function (isUnproductive) {
+            if (isUnproductive) {
+                // Open a webpage showing a reminder
+                chrome.tabs.create({url: '/popup/popup.html'});
+                chrome.tabs.remove(details.tabId); // Close the original tab
+            }
+        });
     } else if (mode === 'focus') {
 
         console.log("Background.js: this is focus mode. Start to redirect.")
@@ -34,7 +36,9 @@ function handleBeforeNavigate(details) {
                         // Perform actions with the top productive site
                         console.log('redirect Url: ', redirectUrl);
                     } else {
-                        console.log('No productive sites available. If you want to be rerouted for unproductive sites, ' +
+                        console.log('No productive sites available. If you want to be reroute' +
+                            '' +
+                            'd for unproductive sites, ' +
                             'please add your target website in the productive site list. ');
                         // Handle the case when no productive sites are available
                     }
