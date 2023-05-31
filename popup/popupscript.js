@@ -4,23 +4,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const yesBtn = document.getElementById('yesBtn');
 
     // Add click event listener to the "No" button
-    noBtn.addEventListener('click', function() {
-        // Close the popup window
+    noBtn.addEventListener('click', function(details) {
         window.close();
+        // chrome.tabs.goBack(); // throws error if nothing to go back to
     });
 
     // Add click event listener to the "Yes" button
     yesBtn.addEventListener('click', function() {
-        // Close the popup window
-        window.close();
-        // Send a message to background.js to remove the listener
-        chrome.runtime.sendMessage({ action: 'removeListener' });
+      window.close();
 
-        // Open www.youtube.com in a new tab
-        window.open('https://www.youtube.com', '_blank');
+      // Send a message to background.js to remove the listener
+      chrome.runtime.sendMessage({ action: 'removeListener' });
 
-        // Once the website is opened, send a message to background.js to add the listener again
-        chrome.runtime.sendMessage({ action: 'addListener' });
+      // Open www.youtube.com in a new tab
+      window.open('https://www.youtube.com/watch?v=DOCBqL_bMLg', '_blank');
 
+      // Once the website is opened, send a message to background.js to add the listener again
+      chrome.runtime.sendMessage({ action: 'addListener' });
     });
 });

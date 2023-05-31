@@ -19,8 +19,7 @@ function handleBeforeNavigate(details) {
         isUnproductiveSite(details.url, function (isUnproductive) {
             if (isUnproductive) {
                 // Open a webpage showing a reminder
-                chrome.tabs.create({url: '/popup/popup.html'});
-                chrome.tabs.remove(details.tabId); // Close the original tab
+                chrome.tabs.update({url: '/popup/popup.html'});
             }
         });
     } else if (mode === 'focus') {

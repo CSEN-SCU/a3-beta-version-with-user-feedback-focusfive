@@ -41,7 +41,10 @@
     "declarativeNetRequestFeedback",
     "tabs",
     "webNavigation",
-    "unlimitedStorage"
+    "unlimitedStorage",
+    "history",
+    "scripting",
+    "windows"
   ],
   "host_permissions": [
     "http://*/*", 
