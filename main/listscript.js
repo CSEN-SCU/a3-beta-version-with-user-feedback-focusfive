@@ -5,6 +5,11 @@ if (element1) {
   document.querySelector('.addTaskBtn').addEventListener('click', function() {
     addTaskItem();
   });
+  document.getElementById('addTaskInput').addEventListener("keydown", function(event) {
+    if (event.keyCode === 13 && document.getElementById('addTaskInput').value.length > 0) {
+      addTaskItem();
+    }
+  });
 }
 
 if (element2) {
@@ -19,6 +24,11 @@ const element4 = document.querySelector('.removeSiteBtn');
 if (element3) {
   document.querySelector('.addSiteBtn').addEventListener('click', function() {
     addSiteItem();
+  });
+  document.getElementById('addSiteInput').addEventListener("keydown", function(event) {
+    if (event.keyCode === 13 && document.getElementById('addSiteInput').value.length > 0) {
+      addSiteItem();
+    }
   });
 }
 
@@ -222,7 +232,7 @@ function updateTaskList(taskList) {
     span.textContent = site;
 
     const anchor = document.createElement('a');
-    anchor.textContent = 'Remove';
+    anchor.textContent = '';
     anchor.addEventListener('click', function(event){
       removeTaskItem(event);
     });
@@ -277,7 +287,7 @@ function updateSitesList(sitesList) {
     span.textContent = site;
 
     const anchor = document.createElement('a');
-    anchor.textContent = 'Remove';
+    anchor.textContent = '';
     anchor.addEventListener('click', function(event){
       removeSitesItem(event);
     });
