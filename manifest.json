@@ -36,6 +36,7 @@
     "type": "module"
   },
   "permissions": [
+    "tabs",
     "storage",
     "activeTab",
     "scripting",
