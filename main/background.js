@@ -1,6 +1,8 @@
 // Retrieve the selected mode from storage or toggle state
 var mode = 'mindful'; // Replace with the actual method to retrieve the selected mode
 console.log("This is a log from background")
+// Declare an object to store the tab IDs and their corresponding popup status
+const popupStatus = {};
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.mode) {
@@ -12,14 +14,20 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 });
 
 let redirectUrl;
+let originalUrl;
 
 function handleBeforeNavigate(details) {
     console.log("This is the handle before navigate");
     if (mode === 'mindful') {
         isUnproductiveSite(details.url, function (isUnproductive) {
             if (isUnproductive) {
+                originalUrl = details.url;
                 // Open a webpage showing a reminder
-                chrome.tabs.create({url: '/popup/popup.html'});
+                chrome.tabs.create({ url: '/popup/popup.html' }, function(popupTab) {
+                    // Once the popup tab is created, send the original URL to it
+                    sendOriginalUrlToPopup(popupTab.id);
+                });
+
                 chrome.tabs.remove(details.tabId); // Close the original tab
             }
         });
@@ -50,7 +58,25 @@ function handleBeforeNavigate(details) {
         });
     }
 }
+function sendOriginalUrlToPopup(popupTabId) {
+    chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+        if (message.action === 'getOriginalUrl') {
+            // Send the original URL to the popup
+            sendResponse({ url: originalUrl });
+        }
+    });
 
+    // Send a message to the popup tab to request the original URL
+    chrome.tabs.sendMessage(popupTabId, { action: 'getOriginalUrl' });
+}
+
+// Listener for messages from the popup or other parts of the extension
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+    if (message.action === 'getOriginalUrl') {
+        // Send the original URL to the popup
+        sendResponse({ url: originalUrl });
+    }
+});
 
 // Establish a dictionary, if url in this dictionary, no need to check?
 
@@ -107,6 +133,10 @@ function getTopProductiveSite(callback) {
     });
 }
 
-
+// Listener for new tab creation
+chrome.tabs.onCreated.addListener(function(tab) {
+    // Add the listener again for the newly created tab
+    chrome.webNavigation.onBeforeNavigate.addListener(handleBeforeNavigate, { tabId: tab.id });
+});
 
 
