@@ -23,12 +23,16 @@ function handleBeforeNavigate(details) {
             if (isUnproductive) {
                 originalUrl = details.url;
                 // Open a webpage showing a reminder
+ 
                 chrome.tabs.create({ url: '/popup/popup.html' }, function(popupTab) {
                     // Once the popup tab is created, send the original URL to it
                     sendOriginalUrlToPopup(popupTab.id);
                 });
 
                 chrome.tabs.remove(details.tabId); // Close the original tab
+ 
+                // chrome.tabs.update({url: '/popup/popup.html'});
+ 
             }
         });
     } else if (mode === 'focus') {

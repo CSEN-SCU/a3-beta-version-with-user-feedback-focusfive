@@ -1,9 +1,15 @@
 const element1 = document.querySelector('.addTaskBtn');
 const element2 = document.querySelector('.removeTaskBtn');
+const element2a = document.querySelector('.clearTaskListBtn');
 
 if (element1) {
   document.querySelector('.addTaskBtn').addEventListener('click', function() {
     addTaskItem();
+  });
+  document.getElementById('addTaskInput').addEventListener("keydown", function(event) {
+    if (event.keyCode === 13 && document.getElementById('addTaskInput').value.length > 0) {
+      addTaskItem();
+    }
   });
 }
 
@@ -13,18 +19,37 @@ if (element2) {
   });
 }
 
+if (element2a) {
+  document.querySelector('.clearTaskListBtn').addEventListener('click', function() {
+    clearTaskList();
+  });
+}
+
+
 const element3 = document.querySelector('.addSiteBtn');
 const element4 = document.querySelector('.removeSiteBtn');
+const element4a = document.querySelector('.clearSiteListBtn');
 
 if (element3) {
   document.querySelector('.addSiteBtn').addEventListener('click', function() {
     addSiteItem();
+  });
+  document.getElementById('addSiteInput').addEventListener("keydown", function(event) {
+    if (event.keyCode === 13 && document.getElementById('addSiteInput').value.length > 0) {
+      addSiteItem();
+    }
   });
 }
 
 if (element4) {
   document.querySelector('.removeSiteBtn').addEventListener('click', function() {
     removeSitesItemTop();
+  });
+}
+
+if (element4a) {
+  document.querySelector('.clearSiteListBtn').addEventListener('click', function() {
+    clearSitesList();
   });
 }
 
@@ -107,6 +132,18 @@ function removeTaskItemTop() {
   }
 }
 
+function clearTaskList () {
+  // Get the current productive sites list from storage
+  getProductiveSites(function (taskList) {
+    taskList = [];
+    saveProductiveSites(taskList);
+
+    // Remove all items from the displayed list
+    updateTaskList(taskList);
+  });
+}
+
+
 
 // Unproductive sites
 function addSiteItem () {
@@ -159,8 +196,6 @@ function removeSitesItem(event) {
   });
 }
 
-
-
 function removeSitesItemTop() {
   const list = document.getElementById('sitesList');
   const allItems = document.querySelectorAll('#sitesList li');
@@ -186,6 +221,17 @@ function removeSitesItemTop() {
       }
     });
   }
+}
+
+function clearSitesList () {
+  // Get the current unproductive sites list from storage
+  getUnproductiveSites(function (sitesList) {
+    sitesList = [];
+    saveUnproductiveSites(sitesList);
+
+    // Remove all items from the displayed list
+    updateSitesList(sitesList);
+  });
 }
 
 
@@ -222,7 +268,7 @@ function updateTaskList(taskList) {
     span.textContent = site;
 
     const anchor = document.createElement('a');
-    anchor.textContent = 'Remove';
+    anchor.textContent = '';
     anchor.addEventListener('click', function(event){
       removeTaskItem(event);
     });
@@ -277,7 +323,7 @@ function updateSitesList(sitesList) {
     span.textContent = site;
 
     const anchor = document.createElement('a');
-    anchor.textContent = 'Remove';
+    anchor.textContent = '';
     anchor.addEventListener('click', function(event){
       removeSitesItem(event);
     });

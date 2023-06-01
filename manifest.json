@@ -22,12 +22,12 @@
     {
       "run_at": "document_start",
       "js": [
-        "/main/togglescript.js",
-        "/rerouting/reroutescript.js",
-        "/ractive.js"
+        "/main/togglescript.js"
       ],
       "matches": [
-        "http://*/*"
+        "http://*/*",
+        "https://*/*"
+
       ]
     }
   ],
@@ -44,7 +44,9 @@
     "declarativeNetRequestFeedback",
     "tabs",
     "webNavigation",
-    "unlimitedStorage"
+    "unlimitedStorage",
+    "history",
+    "windows"
   ],
   "host_permissions": [
     "http://*/*", 

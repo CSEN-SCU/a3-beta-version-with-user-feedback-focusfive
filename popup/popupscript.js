@@ -6,13 +6,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const yesBtn = document.getElementById('yesBtn');
 
     // Add click event listener to the "No" button
-    noBtn.addEventListener('click', function() {
-        // Close the popup window
+    noBtn.addEventListener('click', function(details) {
         window.close();
+        // chrome.tabs.goBack(); // throws error if nothing to go back to
     });
 
     // Add click event listener to the "Yes" button
     yesBtn.addEventListener('click', function() {
+
         // Send a message to background.js to remove the listener
         chrome.runtime.sendMessage({ action: 'removeListener' });
 
@@ -33,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
             chrome.runtime.sendMessage({ action: 'addListener' });
         });
 
-x
+
     });
 });
 

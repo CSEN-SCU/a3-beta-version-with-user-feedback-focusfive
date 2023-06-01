@@ -114,7 +114,7 @@ input:checked + .slider:before {
 /* Inputting lists */
 ol { 
   display: inline-block; 
-  vertical-align:top;
+  vertical-align: top;
   margin-top: 20px;
   list-style-type: square;
 }
@@ -136,4 +136,5 @@ li a:hover {
 li a::before {
   color: red;
   content: '\00D7';
+  font-size: 13px;
 }
