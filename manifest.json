@@ -43,7 +43,6 @@
     "webNavigation",
     "unlimitedStorage",
     "history",
-    "scripting",
     "windows"
   ],
   "host_permissions": [
