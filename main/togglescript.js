@@ -11,6 +11,12 @@ chrome.storage.sync.get('mode', function(result) {
     toggleLabel.innerHTML = 'Mindful Mode';
     el.checked = false;
   }
+
+  chrome.runtime.sendMessage({ mode: mode }), function(){
+  console.log('Message sent to background:', mode);
+  };
+
+
 });
 
 if (el) {
