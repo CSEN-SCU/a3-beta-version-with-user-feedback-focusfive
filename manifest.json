@@ -25,7 +25,9 @@
         "/main/togglescript.js"
       ],
       "matches": [
-        "http://*/*"
+        "http://*/*",
+        "https://*/*"
+
       ]
     }
   ],
