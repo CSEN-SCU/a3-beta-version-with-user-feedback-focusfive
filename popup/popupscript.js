@@ -31,15 +31,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-chrome.storage.sync.get('unproductiveSites', function(result) {
-    const sitesList = result.unproductiveSites || [];
-    console.log(sitesList);
-    for (var i = 0; i < sitesList.length; i++) {
-        if(sitesList[i].indexOf(document.location.host)>-1){
+
+if(document.location.href.indexOf('chrome-extension://') == -1){
+    chrome.storage.sync.get('unproductiveSites', function(result) {
+        const sitesList = result.unproductiveSites || [];
+        console.log(sitesList);
+        for (var i = 0; i < sitesList.length; i++) {
+            // if(sitesList[i].indexOf(document.location.host)>-1){
+            //     chrome.storage.local.remove('targetUrl');
+            // }
             chrome.storage.local.remove('targetUrl');
         }
-    }
-});
+    });
+}
 
 
 // close popup tab directly,
