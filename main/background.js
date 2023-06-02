@@ -1,6 +1,7 @@
 // Retrieve the selected mode from storage or toggle state
 var mode = 'mindful'; // Replace with the actual method to retrieve the selected mode
 console.log("This is a log from background")
+
 // Declare an object to store the tab IDs and their corresponding popup status
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
@@ -18,6 +19,7 @@ let originalUrl;
 
 function handleBeforeNavigate(details) {
     console.log("This is the handle before navigate");
+
     if (mode === 'mindful' ) {
 
 
@@ -52,16 +54,16 @@ function handleBeforeNavigate(details) {
         console.log("Background.js: this is focus mode. Start to redirect.")
         isUnproductiveSite(details.url, function (isUnproductive) {
             if (isUnproductive){
-                console.log("This is a test log in background.js");
-
                 getTopProductiveSite(function(topSite) {
                     if (topSite) {
                         console.log('Top productive site:', topSite);
                         // Perform actions with the top productive site
                         console.log('redirect Url: ', redirectUrl);
+
                         // redirectedTabs[details.tabId] = true; // Mark tab as redirected
                         console.log(details.tabId);
                         chrome.tabs.update(details.tabId, { url: redirectUrl });
+
 
                     } else {
                         console.log('No productive sites available. If you want to be rerouted for unproductive sites, ' +
@@ -69,10 +71,12 @@ function handleBeforeNavigate(details) {
                         // Handle the case when no productive sites are available
                     }
                 });
+
             }
         });
     }
 }
+
 
 
 // Listener for messages from the popup or other parts of the extension
@@ -90,6 +94,7 @@ chrome.webNavigation.onBeforeNavigate.addListener(handleBeforeNavigate);
 
 
 // Listener for messages from the popup or other parts of the extension
+
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     if (message.action === 'getOriginalUrl') {
         // Send the original URL to the popup
@@ -103,7 +108,6 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     }
 });
 
-
 // Function to check if the URL belongs to an unproductive site
 function isUnproductiveSite(url, callback) {
     getUnproductiveSites(function(sitesList) {
@@ -112,7 +116,6 @@ function isUnproductiveSite(url, callback) {
     });
 }
 
-
 // Function to retrieve the unproductive sites list from Chrome storage
 function getUnproductiveSites(callback) {
     chrome.storage.sync.get('unproductiveSites', function(result) {
@@ -120,7 +123,6 @@ function getUnproductiveSites(callback) {
         callback(sitesList);
     });
 }
-
 
 // Function to retrieve the productive sites list from Chrome storage
 function getProductiveSites(callback) {
@@ -146,3 +148,12 @@ chrome.tabs.onCreated.addListener(function(tab) {
 });
 
 
+
+function formatUrlWithHttps(url) {
+    // Check if the URL already starts with http:// or https://
+    if (!/^https?:\/\//i.test(url)) {
+        // If not, prepend the URL with https://
+        url = "https://" + url;
+    }
+    return url;
+}
