@@ -6,7 +6,7 @@ body {
   height: 100vh;
   font-family: poppins;
   font-size: 30px;
-  text-shadow: 10px 10px 15px #000000;
+  text-shadow: 15px 15px 8px lightslategrey;
   /*color: #3366ff;*/
   color:lightseagreen;
   background: grey;
@@ -64,7 +64,7 @@ body {
 } 
 
 .btn-5:hover {
-  border: 1px solid;
+  border: 3px solid;
   box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
   outline-color: rgba(255, 255, 255, 0);
   outline-offset: 15px;
