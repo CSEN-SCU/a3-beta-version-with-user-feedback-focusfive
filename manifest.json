@@ -22,7 +22,8 @@
     {
       "run_at": "document_start",
       "js": [
-        "/main/togglescript.js"
+        "/main/togglescript.js",
+        "/popup/popupscript.js"
       ],
       "matches": [
         "http://*/*",

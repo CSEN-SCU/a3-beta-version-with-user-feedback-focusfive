@@ -14,13 +14,13 @@ body {
 .website {
   font-weight: bold;
   display: inline;
-  color: white;
+  color: lightcoral;
 }
 
 .task {
   font-weight: bold;
   display: inline;
-  color: white;
+  color: steelblue;
 }
 
 
@@ -38,7 +38,7 @@ body {
   text-decoration: none;
   padding: 12px;
   margin: 50px;
-  color: white;
+  color: darkred;
 }
 
 .btn-5 {
@@ -49,6 +49,7 @@ body {
   outline-offset: 0px;
   text-shadow: none;
   transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+  color: darkcyan;
 } 
 
 .btn-5:hover {
