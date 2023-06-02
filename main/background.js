@@ -14,13 +14,11 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 let redirectUrl;
 let originalUrl;
-// Flag to track if the popup was accepted
-let popupAccepted = false;
 
 
 function handleBeforeNavigate(details) {
     console.log("This is the handle before navigate");
-    if (mode === 'mindful'&& !popupAccepted) {
+    if (mode === 'mindful' ) {
 
 
         chrome.storage.local.get(['targetUrl'],function(localData){
@@ -49,7 +47,7 @@ function handleBeforeNavigate(details) {
         });
 
 
-    } else if (mode === 'focus'&& !popupAccepted) {
+    } else if (mode === 'focus' ) {
 
         console.log("Background.js: this is focus mode. Start to redirect.")
         isUnproductiveSite(details.url, function (isUnproductive) {
@@ -75,17 +73,7 @@ function handleBeforeNavigate(details) {
         });
     }
 }
-function sendOriginalUrlToPopup(popupTabId) {
-    chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-        if (message.action === 'getOriginalUrl') {
-            // Send the original URL to the popup
-            sendResponse({ url: originalUrl });
-        }
-    });
 
-    // Send a message to the popup tab to request the original URL
-    chrome.tabs.sendMessage(popupTabId, { action: 'getOriginalUrl' });
-}
 
 // Listener for messages from the popup or other parts of the extension
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
@@ -106,14 +94,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     if (message.action === 'getOriginalUrl') {
         // Send the original URL to the popup
         sendResponse({ url: originalUrl });
-    } else if (message.action === 'popupAccepted') {
-
-        popupAccepted = true;
-
-        setTimeout(function() {
-            popupAccepted = false;
-        }, 1000);
-    } else if (message.action === 'removeListener') {
+    }  else if (message.action === 'removeListener') {
         // Remove the listener
         chrome.webNavigation.onBeforeNavigate.removeListener(handleBeforeNavigate);
     } else if (message.action === 'addListener') {

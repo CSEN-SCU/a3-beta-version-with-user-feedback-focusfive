@@ -26,32 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-
-
     });
 });
-
-
-
-// Function to send a message to the background script to get the original URL
-function getOriginalUrlFromBackground(callback) {
-    chrome.runtime.sendMessage({ action: 'getOriginalUrl' }, function(response) {
-        const originalUrl = response.url;
-        // Use the originalUrl value as needed
-        console.log('Original URL:', originalUrl);
-        callback(originalUrl);
-    });
-}
-
-function formatUrlWithHttps(url) {
-    // Check if the URL already starts with http:// or https://
-    if (!/^https?:\/\//i.test(url)) {
-        // If not, prepend the URL with https://
-        url = "https://" + url;
-    }
-    return url;
-}
-
 
 
 
