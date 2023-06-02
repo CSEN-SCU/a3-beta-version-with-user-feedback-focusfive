@@ -59,6 +59,7 @@ function handleBeforeNavigate(details) {
                         console.log('Top productive site:', topSite);
                         // Perform actions with the top productive site
                         console.log('redirect Url: ', redirectUrl);
+                        redirectUrl = formatUrlWithHttps(redirectUrl);
 
                         // redirectedTabs[details.tabId] = true; // Mark tab as redirected
                         console.log(details.tabId);
