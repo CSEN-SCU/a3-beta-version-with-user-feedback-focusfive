@@ -2,7 +2,6 @@
 var mode = 'mindful'; // Replace with the actual method to retrieve the selected mode
 console.log("This is a log from background")
 // Declare an object to store the tab IDs and their corresponding popup status
-const popupStatus = {};
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.mode) {
@@ -15,27 +14,42 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 let redirectUrl;
 let originalUrl;
+// Flag to track if the popup was accepted
+let popupAccepted = false;
+
 
 function handleBeforeNavigate(details) {
     console.log("This is the handle before navigate");
-    if (mode === 'mindful') {
-        isUnproductiveSite(details.url, function (isUnproductive) {
-            if (isUnproductive) {
-                originalUrl = details.url;
-                // Open a webpage showing a reminder
- 
-                chrome.tabs.create({ url: '/popup/popup.html' }, function(popupTab) {
-                    // Once the popup tab is created, send the original URL to it
-                    sendOriginalUrlToPopup(popupTab.id);
-                });
+    if (mode === 'mindful'&& !popupAccepted) {
 
-                chrome.tabs.remove(details.tabId); // Close the original tab
- 
-                // chrome.tabs.update({url: '/popup/popup.html'});
- 
+
+        chrome.storage.local.get(['targetUrl'],function(localData){
+            console.log(localData)
+            var urlList = localData.targetUrl||[];
+
+            if(!localData.targetUrl){
+                isUnproductiveSite(details.url, function (isUnproductive) {
+                    if (isUnproductive) {
+                        originalUrl = details.url;
+                        // Open a webpage showing a reminder
+
+                        chrome.tabs.create({ url: '/popup/popup.html' }, function(popupTab) {
+                            // Once the popup tab is created, send the original URL to it
+                            // sendOriginalUrlToPopup(popupTab.id);
+
+                            chrome.storage.local.set({'targetUrl':details.url});
+
+                        });
+
+                        chrome.tabs.remove(details.tabId); // Close the original tab
+
+                    }
+                });
             }
         });
-    } else if (mode === 'focus') {
+
+
+    } else if (mode === 'focus'&& !popupAccepted) {
 
         console.log("Background.js: this is focus mode. Start to redirect.")
         isUnproductiveSite(details.url, function (isUnproductive) {
@@ -47,17 +61,16 @@ function handleBeforeNavigate(details) {
                         console.log('Top productive site:', topSite);
                         // Perform actions with the top productive site
                         console.log('redirect Url: ', redirectUrl);
+                        // redirectedTabs[details.tabId] = true; // Mark tab as redirected
+                        console.log(details.tabId);
+                        chrome.tabs.update(details.tabId, { url: redirectUrl });
+
                     } else {
                         console.log('No productive sites available. If you want to be rerouted for unproductive sites, ' +
                             'please add your target website in the productive site list. ');
                         // Handle the case when no productive sites are available
                     }
                 });
-
-                // redirectedTabs[details.tabId] = true; // Mark tab as redirected
-                console.log(details.tabId);
-                chrome.tabs.update(details.tabId, { url: redirectUrl });
-
             }
         });
     }
@@ -88,9 +101,19 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 chrome.webNavigation.onBeforeNavigate.addListener(handleBeforeNavigate);
 
 
-// Function to handle messages from the popup.js script
+// Listener for messages from the popup or other parts of the extension
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-    if (message.action === 'removeListener') {
+    if (message.action === 'getOriginalUrl') {
+        // Send the original URL to the popup
+        sendResponse({ url: originalUrl });
+    } else if (message.action === 'popupAccepted') {
+
+        popupAccepted = true;
+
+        setTimeout(function() {
+            popupAccepted = false;
+        }, 1000);
+    } else if (message.action === 'removeListener') {
         // Remove the listener
         chrome.webNavigation.onBeforeNavigate.removeListener(handleBeforeNavigate);
     } else if (message.action === 'addListener') {
@@ -98,8 +121,6 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
         chrome.webNavigation.onBeforeNavigate.addListener(handleBeforeNavigate);
     }
 });
-
-
 
 
 // Function to check if the URL belongs to an unproductive site
