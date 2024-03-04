@@ -1,20 +1,56 @@
 {
   "manifest_version": 3,
-  "name": "Hello Extensions",
-  "description": "COEN 296A A3",
+  "name": "ReFocus",
+  "description": "(COEN 296A A3) This is an extension that focuses on rerouting to help users against ACDPs.",
   "version": "1.0",
+  "author": "Team Focus5",
+  "icons": {
+    "16": "/logos/logo-16.png",
+    "48": "/logos/logo-48.png",
+    "128": "/logos/logo-128.png"
+  },
   "action": {
-    "default_popup": "helloworld.html",
-    "default_icon": "helloworld.png"
+    "default_popup": "/main/main.html",
+    "default_title": "ReFocus",
+    "default_icon": {
+      "16": "/logos/logo-16.png",
+      "48": "/logos/logo-48.png",
+      "128": "/logos/logo-128.png"
+    }
   },
   "content_scripts": [
     {
-      "js": ["helloworld.js"],
-      "matches": ["https://www.youtube.com/*"]
+      "run_at": "document_start",
+      "js": [
+        "/main/togglescript.js",
+        "/popup/popupscript.js"
+      ],
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+
+      ]
     }
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "/main/background.js",
+    "type": "module"
   },
-  "permissions": ["storage", "activeTab", "scripting"]
+  "permissions": [
+    "tabs",
+    "storage",
+    "activeTab",
+    "scripting",
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback",
+    "tabs",
+    "webNavigation",
+    "unlimitedStorage",
+    "history",
+    "windows"
+  ],
+  "host_permissions": [
+    "http://*/*", 
+    "https://*/*"
+  ]
 }

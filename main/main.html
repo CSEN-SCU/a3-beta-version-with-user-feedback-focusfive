@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>ReFocus</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/main/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Arimo:200,300,400,600,700" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="heading">
+      <img id="logo" src="/logos/logo.png" alt="Logo image">  
+      <h2>Today</h2>
+    </div>
+
+    <div class="lists">
+      <div>
+        <h3>Productive Sites:</h3>
+        
+        <fieldset class="form-inline">
+          <input class="form-control" id="addTaskInput" placeholder="Add a new site">
+          <button class="addTaskBtn" title="Add to the list">Add site</button>
+          <button class="clearTaskListBtn" title="Clear the list">&#8635</button>
+          
+          <section>
+            <ol id="taskList">
+              <li><span contenteditable>camino.instructure.com</span><a></a></li>
+              <li><span contenteditable>docs.google.com</span><a></a></li>
+            </ol>
+          </section>
+          
+        </fieldset>
+        
+      </div>
+
+      <div>
+        <h3>Unproductive sites:</h3>
+        
+        <fieldset class="form-inline">
+          <input class="form-control" id="addSiteInput" placeholder="Add a new site">
+          <button class="addSiteBtn" title="Add to the list">Add site</button>
+          <button class="clearSiteListBtn" title="Clear the list">&#8635</button>
+          
+          <section>
+            <ol id="sitesList">
+              <li><span contenteditable>reddit.com</span><a></a></li>
+              <li><span contenteditable>twitter.com</span><a></a></li>
+              <li><span contenteditable>facebook.com</span><a></a></li>
+            </ol>
+          </section>
+          
+        </fieldset>
+        
+      </div>
+    </div>
+    
+  <label class="switch">
+    <input class="toggle" type="checkbox">
+    <span class="slider round"></span>
+    <div id="toggle">Mindful Mode</div>
+  </label> 
+    
+  </body>
+
+<script src="/main/listscript.js"></script>
+<script src="/main/togglescript.js"></script>
+
+</html>
